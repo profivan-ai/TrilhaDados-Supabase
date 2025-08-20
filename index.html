@@ -78,6 +78,7 @@
       width: 80%;
       height: 500px;
       border: none;
+      border-radius: 12px;
     }
 
     .exercise-box {
@@ -86,6 +87,11 @@
       margin: 1rem;
       border-left: 4px solid #3498db;
     }
+
+    nav ul li button.active {
+      background-color: #1abc9c;
+    }
+
 
     @media (max-width: 768px) {
       nav {
@@ -111,8 +117,8 @@
     <nav>
       <h2>Vídeos da Playlist</h2>
       <ul>
-        <li><button onclick="loadVideo('mQSgIbONHoA')">1. Criando uma tabela e acessando no Python</button></li>
-        <li><button onclick="loadVideo('RyGu6-VHAds')">2. Um pouco de SQL </button></li>
+        <li><button onclick="loadVideo('mQSgIbONHoA', event)">1. Criando uma tabela e acessando no Python</button></li>
+        <li><button onclick="loadVideo('RyGu6-VHAds', event)">2. Um pouco de SQL </button></li>
 
       </ul>
     </nav>
@@ -134,10 +140,16 @@
   </main>
 
   <script>
-    function loadVideo(videoId) {
-      const iframe = document.getElementById('videoFrame');
-      iframe.src = 'https://www.youtube.com/embed/' + videoId;
-    }
+  function loadVideo(videoId) {
+  const iframe = document.getElementById('videoFrame');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId;
+
+  // Remove classe ativa de todos os botões
+  document.querySelectorAll('nav ul li button').forEach(btn => btn.classList.remove('active'));
+
+  // Adiciona classe ativa ao botão clicado
+  event.target.classList.add('active');
+}
   </script>
 </body>
 </html>
